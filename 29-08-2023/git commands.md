@@ -120,3 +120,25 @@ git branch some-new-branch-name
 git reset HEAD~ --hard
 git checkout some-new-branch-name
 # your commit lives in this branch now :)
+
+## .DS_Store [check here!](https://stackoverflow.com/questions/18393498/gitignore-all-the-ds-store-files-in-every-folder-and-subfolder)
+If .DS_Store was never added to your git repository, simply add it to your .gitignore file.
+
+If you don't have one, create a file called
+
+.gitignore
+In the root directory of your app and simply write
+
+**/.DS_Store
+In it. This will never allow the .DS_Store file to sneak in your git.
+
+But, if it's already there, write in your terminal:
+```
+find . -name .DS_Store -print0 | xargs -0 git rm -f --ignore-unmatch
+```
+then commit and push the changes to remove the .DS_Store from your remote repo:
+
+git commit -m "Remove .DS_Store from everywhere"
+
+git push origin master
+And now add .DS_Store to your .gitignore file, and then again commit and push with the 2 last pieces of code (git commit..., git push...)
